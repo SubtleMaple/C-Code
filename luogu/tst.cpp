@@ -1,21 +1,50 @@
 #include<bits/stdc++.h>
-using namespace std;
-#define rep(i,a,n) for(int i=a;i<=n;++i)
 
-int a[101][101],b[101];
+using namespace std;
 
 int main()
 {
-	int n,m;
-	cin>>n>>m;
-	rep(i,1,n) rep(j,1,m) cin>>a[i][j];
-	rep(i,1,m) cin>>b[i];
-	for(int i=1;i<=n;++i)
+	ios::sync_with_stdio(0); cin.tie(0);
+	int ans = 0;
+	string ss; cin >> ss;
+	int len = ss.size();
+	len = 2 * len + 1;
+	string s = "$";
+	vector<int> rc(len + 1);
+	for(int i = 0; i < (int)ss.size(); ++i)
 	{
-		int res=0;
-		for(int k=1;k<=m;++k) res += a[i][k] * b[k];
-		cout<<res<<'\n';
+		if(!i) s += '#';
+		s += ss[i], s += '#';
 	}
-
+	int c = 0, r = 0;
+	for(int i = 1; i < len; ++i) // border can be len ???
+	{
+		if(i > r)
+		{
+			int j = i;
+			while(s[j+1] == s[2 * i - j - 1]) j++;
+			rc[i] = j - i;
+		}
+		else
+		{
+			int l = c - rc[c];
+			int ii = 2 * c - i;
+			int il = ii - rc[ii];
+			if(l < il) rc[i] = rc[ii];
+			else if(il < l) rc[i] = r - i;
+			else 
+			{
+				int j = r;
+				while(s[j + 1] == s[2 * i - j - 1]) j++;
+				rc[i] = j - i;
+			}
+		}
+		ans = max(ans,rc[i]);
+		if(rc[i] + i > r)
+		{
+			r = rc[i] + i, c = i;
+		}
+	}
+	cout<<ans<<'\n';
 	return 0;
 }
