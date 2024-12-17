@@ -23,7 +23,7 @@ void fast_fast_tle(int limit,complex *a,int type)
 {
     if(limit==1) return ;//只有一个常数项
     complex a1[limit>>1],a2[limit>>1];
-    for(int i=0;i<=limit;i+=2)//根据下标的奇偶性分类
+    for(int i=0;i<limit;i+=2)//根据下标的奇偶性分类
         a1[i>>1]=a[i],a2[i>>1]=a[i+1];
     fast_fast_tle(limit>>1,a1,type);
     fast_fast_tle(limit>>1,a2,type);

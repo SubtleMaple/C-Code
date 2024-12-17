@@ -60,7 +60,8 @@ namespace virtue_constructor
 
     class MostDerived : public Derived1, public Derived2 {
     public:
-        MostDerived(int x) : Base(x), Derived1(x), Derived2(x) {
+    //放在初始化列表的部分在构造函数之前执行
+        MostDerived(int x) : Base(x), Derived1(x), Derived2(x) { // 基类的构造函数通过子类的初始化列表调用
             // 调用虚基类的构造函数
         }
     };

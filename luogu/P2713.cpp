@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const int N = 1e5+7;
+const int N = 1e6+7;
 
 int n,m,a[N],rt[N],dis[N];
 pair<int,int> v[N];
@@ -27,18 +27,19 @@ int merge(int x,int y)
 int main()
 {
 	ios::sync_with_stdio(0); cin.tie(0);
-	cin>>n>>m;
+	cin>>n;
 
 	for(int i = 1; i <= n; ++i)
 	{
 		cin>>a[i]; rt[i] = i;	
 		v[i] = make_pair(a[i],i);
 	}
+	cin>>m;
 
 	while(m--)
 	{
-		int op; cin>>op;
-		if(op == 1)
+		char op; cin>>op;
+		if(op == 'M')
 		{
 			int x,y; cin>>x>>y;
 			if(!del[x] && !del[y] && (x=find(x)) != (y=find(y))) 
@@ -48,7 +49,7 @@ int main()
 		else
 		{
 			int x; cin>>x;
-			if(del[x]) cout<<"-1\n";
+			if(del[x]) cout<<"0\n";
 			else
 			{
 				x = find(x);

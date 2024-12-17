@@ -5,7 +5,7 @@
 
 using namespace std;
 
-const int N = 500, M = 500,E = 5000;
+const int N = 500, M = 500,E = 50000;
 const int inf = INT_MAX;
 
 struct EDGE{
