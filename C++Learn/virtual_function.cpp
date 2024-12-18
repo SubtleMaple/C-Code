@@ -34,11 +34,9 @@ class car : public vehicle
 int main()
 {
     vehicle * ptr;
-    vehicle a;
-    car b;
-    ptr = &a;
+    ptr = new vehicle();
     ptr->message();
-    ptr = &b;
+    ptr = new car();
     ptr->message(); // 基类中使用虚函数后，基类指针 指向继承类后可以调用继承类中与基类同名的不同函数
     delete ptr; // 使用了虚析构函数，故用 delete 删除对象后先执行派生类的析构函数；
                 // 若不使用虚析构函数，则 delete 后由于静态关联，只执行基类的析构函数
